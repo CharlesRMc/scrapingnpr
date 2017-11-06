@@ -17,6 +17,7 @@ var PORT = 3000;
 // Initialize Express
 var app = express();
 
+var MONGODB_URI = process.env.mongodb("heroku_854nqxpw:gefopfh132u72qekadg75qh0ks@ds249605.mlab.com:49605/heroku_854nqxpw") || "mongodb://localhost/scraper";
 // Configure middleware
 
 // Use morgan logger for logging requests
@@ -29,7 +30,7 @@ app.use(express.static("public"));
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/scraper", {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
